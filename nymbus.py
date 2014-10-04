@@ -3,9 +3,9 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 handshakes = []
-profiles = {'203 76 145 218 97 205 37 78 195 178 100 19 75 60 247 33': 
-                'http://nymion.herokuapp.com',
-            '2': 'http://nymion.herokuapp.com'}
+profiles = {'203 76 145 218 97 205 37 78 195 178 100 19 75 60 247 33': 'http://nymion.herokuapp.com',
+            '2': 'http://nymion.herokuapp.com',
+            '1': 'http://nymion.herokuapp.com'}
 recent_handshakes = []
 
 @app.route('/')
