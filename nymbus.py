@@ -3,8 +3,8 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 handshakes = []
-profiles = {'1': {'url': 'http://nymion.herokuapps.com'},
-            '2': {'url': 'http://nymion.herokuapps.com'}}
+profiles = {'1': 'http://nymion.herokuapps.com',
+            '2': 'http://nymion.herokuapps.com'}
 recent_handshakes = []
 
 @app.route('/')
@@ -36,7 +36,7 @@ def get_handshake():
         return jsonify({'status': 'not-ok'})
     profile = profiles[handshake['nymi_id']]
     return jsonify({'status': 'ok',
-                    'profile': profile['url']})
+                    'profile': profile})
     
 def find_profile(handshake):
     handshake_ts = long(handshake['timestamp'])
