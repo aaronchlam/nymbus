@@ -1,11 +1,12 @@
+import os
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
 handshakes = []
 
-@app.rout('/')
-def index:
+@app.route('/')
+def index():
     return "Hello World"
 
 @app.route('/new-handshake', methods = ['POST'])
@@ -25,8 +26,9 @@ def new_handshake():
 #    handshake_ts = long(handshake['timestamp'])
 #    for hs in handshakes:
 #        time_diff = handshake_ts - long(hs['timestamp'])
-#        if abs(time_diff) < 5000:
+#        if abs(time_diff) < 5000
 #            return hs
        
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
