@@ -13,6 +13,7 @@ def index():
     return "Hello World"
 
 #@app.route('/recent-handshakes')
+#crossdomain(origin="*")
 #def recent_handshake():
 #    nymi_id = request.json['nymi_id']
 #    for hs in recent_handshakes:
