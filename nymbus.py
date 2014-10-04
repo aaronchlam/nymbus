@@ -10,17 +10,16 @@ recent_handshakes = []
 
 @app.route('/')
 def index():
-    return "Hello World"
+    return 'Hello World'
 
-#@app.route('/recent-handshakes')
-#crossdomain(origin="*")
-#def recent_handshake():
-#    nymi_id = request.json['nymi_id']
-#    for hs in recent_handshakes:
-#        if nymi_id == hs['nymi_id']:
-#            continue
-#        return jsonify({'status': '1'})
-#    return jsonify({'status': '0'})
+@app.route('/recent-handshakes', methods = ['POST'])
+def recent_handshake():
+    nymi_id = request.json['nymi_id']
+    for hs in recent_handshakes:
+        if nymi_id == hs['nymi_id']:
+            continue
+        return jsonify({'status': '1'})
+    return jsonify({'status': '0'})
 
 @app.route('/new-handshake', methods = ['POST'])
 def new_handshake():
