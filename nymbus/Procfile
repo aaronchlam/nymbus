@@ -1,1 +1,1 @@
-web: gunicorn nymbus:app
+web: gunicorn nymbus:app --log-file=-
