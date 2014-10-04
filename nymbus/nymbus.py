@@ -4,6 +4,10 @@ app = Flask(__name__)
 
 handshakes = []
 
+@app.rout('/')
+def index:
+    return "Hello World"
+
 @app.route('/new-handshake', methods = ['POST'])
 def new_handshake():
     if not request.headers['Content-Type'] == 'application/json':
@@ -13,5 +17,16 @@ def new_handshake():
     handshakes.append(handshake)
     return jsonify({'handshake': handshake}), 201
 
+#@app.route('/get-handshake')
+#def get_handshake():
+#    handshake = request.json['handshake']
+#    
+#def find_profile(handshake):
+#    handshake_ts = long(handshake['timestamp'])
+#    for hs in handshakes:
+#        time_diff = handshake_ts - long(hs['timestamp'])
+#        if abs(time_diff) < 5000:
+#            return hs
+       
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
