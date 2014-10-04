@@ -39,6 +39,7 @@ def get_handshake():
                     'profile': profile})
     
 def find_profile(handshake):
+    return jsonify({"status": "ok"})
     handshake_ts = long(handshake['timestamp'])
     for hs in handshakes:
         if hs['nymi_id'] == handshake['nymi_id']:
@@ -49,5 +50,5 @@ def find_profile(handshake):
             return hs
     return 0
 
-if __name__ == '__main__':
-    app.run(debug=True)
+#if __name__ == '__main__':
+#    app.run(debug=True)
