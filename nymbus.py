@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 handshakes = []
+profiles = {'nymi_id': 'www.nymion.herokuapp.com'}
 
 @app.route('/')
 def index():
@@ -18,13 +19,19 @@ def new_handshake():
     handshakes.append(handshake)
     return jsonify({'handshake': handshake}), 201
 
-#@app.route('/get-handshake')
-#def get_handshake():
-#    handshake = request.json['handshake']
-#    
-#def find_profile(handshake):
-#    handshake_ts = long(handshake['timestamp'])
-#    for hs in handshakes:
-#        time_diff = handshake_ts - long(hs['timestamp'])
-#        if abs(time_diff) < 5000
-#            return hs
+@app.route('/get-handshake')
+def get_handshake():
+    handshake = request.json['handshake']
+    if handshake == 0:
+        return jsonify({'status': 'not-ok'})
+    profile_url = profiles[long(handshake['nymi_id'])]
+    return jsonify({'status': 'ok',
+                    'profile': profile_url})
+    
+def find_profile(handshake):
+    handshake_ts = long(handshake['timestamp'])
+    for hs in handshakes:
+        time_diff = handshake_ts - long(hs['timestamp'])
+        if abs(time_diff) < 5000
+            return hs
+    return 0
