@@ -10,22 +10,30 @@ recent_handshakes = []
 def index():
     return "Hello World"
 
+#@app.route('/recent-handshakes')
+#def recent_handshake():
+#    nymi_id = request.json['nymi_id']
+#    for hs in recent_handshakes:
+#        if nymi_id == hs['nymi_id']:
+#            continue
+#       
+#        
+
 @app.route('/new-handshake', methods = ['POST'])
 def new_handshake():
     if not request.headers['Content-Type'] == 'application/json':
-        return 
+        return error(404)
     handshake = {'nymi_id': request.json['nymi_id'], 
             'timestamp': request.json['timestamp']} 
     handshakes.append(handshake)
     return jsonify({'handshake': handshake}), 201
 
-@app.route('/get-handshake')
+@app.route('/get-handshake', methods = ['POST'])
 def get_handshake():
     handshake = find_profile(request.json['handshake'])
     if handshake == 0:
         return jsonify({'status': 'not-ok'})
     profile = profiles[handshake['nymi_id']]
-    
     return jsonify({'status': 'ok',
                     'profile': profile['url']})
     
@@ -36,6 +44,7 @@ def find_profile(handshake):
             continue
         time_diff = handshake_ts - long(hs['timestamp'])
         if abs(time_diff) < 100:
+            recent_handshakes.append(hs)
             return hs
     return 0
 
