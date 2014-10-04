@@ -10,10 +10,6 @@ recent_handshakes = []
 def index():
     return "Hello World"
 
-@app.route('/recent-handshakes')
-def recent_handshakes:
-
-
 @app.route('/new-handshake', methods = ['POST'])
 def new_handshake():
     if not request.headers['Content-Type'] == 'application/json':
@@ -43,5 +39,5 @@ def find_profile(handshake):
             return hs
     return 0
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
