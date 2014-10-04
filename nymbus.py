@@ -18,9 +18,8 @@ def index():
 #    for hs in recent_handshakes:
 #        if nymi_id == hs['nymi_id']:
 #            continue
-#        return {
-#
-        
+#        return jsonify({'status': '1'})
+#    return jsonify({'status': '0'})
 
 @app.route('/new-handshake', methods = ['POST'])
 def new_handshake():
