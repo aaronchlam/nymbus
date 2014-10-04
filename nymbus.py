@@ -3,7 +3,8 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 handshakes = []
-profiles = {}
+profiles = {'1': {'url': 'http://nymion.herokuapps.com'},
+            '2': {'url': 'http://nymion.herokuapps.com'}}
 recent_handshakes = []
 
 @app.route('/')
@@ -43,7 +44,7 @@ def find_profile(handshake):
         if hs['nymi_id'] == handshake['nymi_id']:
             continue
         time_diff = handshake_ts - long(hs['timestamp'])
-        if abs(time_diff) < 100:
+        if abs(time_diff) < 5000:
             recent_handshakes.append(hs)
             return hs
     return 0
